@@ -137,7 +137,7 @@ def previsao_recursiva(modelo, X_inicial, steps=7):
     return np.array(previsoes)
 
 
-def treinar_multioutput(X_train, y_train_multi, X_test, horizonte=7):
+def treinar_multioutput(X_train, y_train_multi, X_test, y_test_multi, horizonte=7):
     """
     Treina modelo MultiOutputRegressor para previsão MIMO.
     
@@ -145,6 +145,7 @@ def treinar_multioutput(X_train, y_train_multi, X_test, horizonte=7):
         X_train: Features de treino
         y_train_multi: Targets para múltiplos dias (shape: n_samples, horizonte)
         X_test: Features de teste
+        y_test_multi: Targets de teste para múltiplos dias
         horizonte: Número de dias à frente
         
     Returns:
@@ -159,7 +160,7 @@ def treinar_multioutput(X_train, y_train_multi, X_test, horizonte=7):
     metricas_por_horizonte = []
     for i in range(horizonte):
         metricas = calcular_metricas(
-            y_train_multi.iloc[:, i] if hasattr(y_train_multi, 'iloc') else y_train_multi[:, i],
+            y_test_multi.iloc[:, i] if hasattr(y_test_multi, 'iloc') else y_test_multi[:, i],
             y_pred_multi[:, i]
         )
         metricas['horizonte'] = f'dia+{i+1}'
