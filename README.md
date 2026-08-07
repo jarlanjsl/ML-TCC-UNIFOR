@@ -2,42 +2,33 @@
 
 ## Descrição
 
-Trabalho de Conclusão de Curso do MBA em Ciência de Dados - Unifor.
+Trabalho de Conclusão de Curso do MBA em Ciências de Dados - Unifor.
 
-Este projeto implementa um sistema preditivo para demanda diária de produtos de supermercado, utilizando técnicas avançadas de séries temporais e machine learning.
+Este projeto explora diferentes configurações de janelas temporais, abordagens de previsão multi-step e modelos de ensemble para identificar a melhor estratégia preditiva para demanda diária de produtos de supermercado.
 
-## Contexto
+## Metodologia
 
-O projeto é uma evolução do trabalho desenvolvido na disciplina de **Modelos de Machine Learning**, que previa a demanda do Top SKU usando abordagem básica. Esta versão implementa melhorias significativas solicitadas pelo professor Caio Ponte.
-
-## Melhorias em Relação ao Projeto Anterior (ML)
-
-### 1. Correção de Data Leakage
-- **Problema anterior:** `StandardScaler` era fitado em todos os dados antes do split temporal
-- **Solução:** Scaler é fitado apenas nos dados de treino, transformando teste separadamente
-- **Impacto:** Métricas agora refletem performance real, sem vazamento de informação futura
-
-### 2. Experimentos com Diferentes Janelas (W)
+### 1. Experimentos com Diferentes Janelas (W)
 - **W=3:** Captura variações recentes (curto prazo)
 - **W=7:** Captura padrão semanal (atual)
 - **W=15:** Suaviza ruído (longo prazo)
 - **Análise:** Matriz de experimentos comparando combinações de lags e janelas
 
-### 3. Predição Recursiva Multi-Step
+### 2. Predição Recursiva Multi-Step
 - **Abordagem:** Previsão do dia t alimenta previsão do dia t+1
 - **Benefício:** Captura dependência temporal entre dias consecutivos
 - **Análise:** Visualização do erro acumulado ao longo do horizonte
 
-### 4. MultiOutputRegressor (MIMO)
+### 3. MultiOutputRegressor (MIMO)
 - **Abordagem:** Prever 7 dias simultaneamente em um único modelo
 - **Comparação:** vs. abordagem recursiva
 - **Métricas:** Performance por horizonte (dia+1, dia+2, ... dia+7)
 
-### 5. Baseline Naive
+### 4. Baseline Naive
 - **Modelo:** Previsão = valor de ontem (persistence model)
 - **Propósito:** Referência mínima para avaliar se os modelos complexos agregam valor
 
-### 6. Modularização do Código
+### 5. Modularização do Código
 - **Estrutura:** Código organizado em módulos reutilizáveis (`src/`)
 - **Benefícios:** Manutenibilidade, testabilidade e reuso
 
@@ -129,7 +120,7 @@ jupyter notebook
 - Criação de lags (1-15 dias)
 - Rolling features (média, std) com janelas configuráveis
 - Features temporais (dia_semana, mes, fim_de_semana)
-- **Correção:** Split temporal ANTES do scaling
+- Split temporal antes do scaling
 - Salvamento do scaler
 
 **03_modeling.ipynb:**
@@ -171,9 +162,9 @@ jupyter notebook
 
 ## Equipe
 
-- **Autor:** Jarlan Lima e Julia Nogueira
-- **Orientador:** Prof. Caio Ponte
-- **Curso:** MBA em Ciência de Dados - Unifor
+- **Autor:** Jarlan Silva de Lima
+- **Orientador:** Prof. Daniel Teófilo
+- **Curso:** MBA em Ciências de Dados - Unifor
 
 ## Licença
 
