@@ -56,5 +56,9 @@ desktop.ini
 *.gif
 !img/
 
+# Documentos
+*.docx
+*.doc
+
 # Logs
 *.log
